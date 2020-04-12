@@ -4,7 +4,7 @@
     <title></title>
     <meta charset="utf-8">
     <!-- 指定以IE8的方式来渲染 -->
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"/>
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"/>-->
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" type="text/css" href="/js/easyui-1.3.5/themes/default/easyui.css"/>
     <link rel="stylesheet" type="text/css" href="/js/easyui-1.3.5/themes/icon.css"/>
@@ -147,8 +147,11 @@
             <script>
                 var pNumber = getUrlParam('appID');  //获取传值appid
                 $(function () {
+                    //funtions含有"["特殊字符, 需要url编码
+                    var requestUrl = '/functions/findMenu?pNumber=' + pNumber + '&hasFunctions=' + functions;
                     $('#tt').tree({
-                        url: '/functions/findMenu?pNumber=' + pNumber + '&hasFunctions=' + functions,
+                       //url: '/functions/findMenu?pNumber=' + pNumber + '&hasFunctions=' + functions,
+                       url: encodeURI(requestUrl),
                         animate: true
                     });
                 });
